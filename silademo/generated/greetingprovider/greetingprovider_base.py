@@ -18,10 +18,8 @@ class GreetingProviderBase(FeatureImplementationBase, ABC):
 
     def __init__(self, parent_server: Server):
         """
-
-        Example implementation of a minimum Feature. Provides a Greeting to the Client
+            Example implementation of a minimum Feature. Provides a Greeting to the Client
         and a StartYear property, informing about the year the Server has been started.
-
         """
         super().__init__(parent_server=parent_server)
 

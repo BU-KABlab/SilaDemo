@@ -18,10 +18,8 @@ if TYPE_CHECKING:
 
 class GreetingProviderClient:
     """
-
     Example implementation of a minimum Feature. Provides a Greeting to the Client
     and a StartYear property, informing about the year the Server has been started.
-
     """
 
     StartYear: ClientUnobservableProperty[int]
