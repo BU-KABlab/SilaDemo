@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+import "SiLAFramework.proto";
+
+package sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1;
+
+/* Provides control and measurement capabilities for Sartorius laboratory scales through the sartorius Python library. */
+service SartoriusScaleController {
+  /* Returns the current weight reading from the connected Sartorius scale. */
+  rpc MeasureWeight (sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.MeasureWeight_Parameters) returns (sila2.org.silastandard.CommandConfirmation) {}
+  /* Monitor the state of MeasureWeight */
+  rpc MeasureWeight_Info (sila2.org.silastandard.CommandExecutionUUID) returns (stream sila2.org.silastandard.ExecutionInfo) {}
+  /* Retrieve result of MeasureWeight */
+  rpc MeasureWeight_Result(sila2.org.silastandard.CommandExecutionUUID) returns (sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.MeasureWeight_Responses) {}
+  /* Tares the scale (sets the current weight reading to zero). */
+  rpc Tare (sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Tare_Parameters) returns (sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Tare_Responses) {}
+  /* Zeros the scale (calibrates to absolute zero). */
+  rpc Zero (sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Zero_Parameters) returns (sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Zero_Responses) {}
+  /* Establishes a connection to the Sartorius scale with the specified port. */
+  rpc Connect (sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Connect_Parameters) returns (sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Connect_Responses) {}
+  /* The current measurement unit of the scale (e.g., g, kg, mg). */
+  rpc Subscribe_Unit (sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Subscribe_Unit_Parameters) returns (stream sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Subscribe_Unit_Responses) {}
+  /* The current connection status of the Sartorius scale. */
+  rpc Subscribe_ConnectionStatus (sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Subscribe_ConnectionStatus_Parameters) returns (stream sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Subscribe_ConnectionStatus_Responses) {}
+  /* Indicates whether the current weight reading is stable. */
+  rpc Subscribe_StableReading (sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Subscribe_StableReading_Parameters) returns (stream sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Subscribe_StableReading_Responses) {}
+  /* Information about the connected Sartorius scale model, serial number, and firmware version. */
+  rpc Get_ScaleInformation (sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Get_ScaleInformation_Parameters) returns (sila2.org.sartorius.laboratory.devices.scales.sartoriusscalecontroller.v1.Get_ScaleInformation_Responses) {}
+}
+
+/* Parameters for MeasureWeight */
+message MeasureWeight_Parameters {
+}
+
+/* Responses of MeasureWeight */
+message MeasureWeight_Responses {
+  sila2.org.silastandard.Real Weight = 1;  /* The current weight measurement from the scale. */
+}
+
+/* Parameters for Tare */
+message Tare_Parameters {
+}
+
+/* Responses of Tare */
+message Tare_Responses {
+  sila2.org.silastandard.Boolean Success = 1;  /* Boolean indicating if the tare operation was successful. */
+}
+
+/* Parameters for Zero */
+message Zero_Parameters {
+}
+
+/* Responses of Zero */
+message Zero_Responses {
+  sila2.org.silastandard.Boolean Success = 1;  /* Boolean indicating if the zero operation was successful. */
+}
+
+/* Parameters for Connect */
+message Connect_Parameters {
+  sila2.org.silastandard.String Port = 1;  /* The serial port or device address for the scale connection. */
+}
+
+/* Responses of Connect */
+message Connect_Responses {
+  sila2.org.silastandard.Boolean Connected = 1;  /* Boolean indicating if the connection was successful. */
+}
+
+/* Parameters for Unit */
+message Subscribe_Unit_Parameters {
+}
+
+/* Responses of Unit */
+message Subscribe_Unit_Responses {
+  sila2.org.silastandard.String Unit = 1;  /* The current measurement unit of the scale (e.g., g, kg, mg). */
+}
+
+/* Parameters for ConnectionStatus */
+message Subscribe_ConnectionStatus_Parameters {
+}
+
+/* Responses of ConnectionStatus */
+message Subscribe_ConnectionStatus_Responses {
+  sila2.org.silastandard.Boolean ConnectionStatus = 1;  /* The current connection status of the Sartorius scale. */
+}
+
+/* Parameters for StableReading */
+message Subscribe_StableReading_Parameters {
+}
+
+/* Responses of StableReading */
+message Subscribe_StableReading_Responses {
+  sila2.org.silastandard.Boolean StableReading = 1;  /* Indicates whether the current weight reading is stable. */
+}
+
+/* Parameters for ScaleInformation */
+message Get_ScaleInformation_Parameters {
+}
+
+/* Responses of ScaleInformation */
+message Get_ScaleInformation_Responses {
+  sila2.org.silastandard.String ScaleInformation = 1;  /* Information about the connected Sartorius scale model, serial number, and firmware version. */
+}

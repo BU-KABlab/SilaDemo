@@ -1,0 +1,105 @@
+<Feature xmlns="http://www.sila-standard.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Category="laboratory.devices.scales" FeatureVersion="1.0" MaturityLevel="Verified" Originator="org.sartorius" SiLA2Version="1.0" xsi:schemaLocation="http://www.sila-standard.org https://gitlab.com/SiLA2/sila_base/raw/master/schema/FeatureDefinition.xsd">
+  <Identifier>SartoriusScaleController</Identifier>
+  <DisplayName>Sartorius Scale Controller</DisplayName>
+  <Description>Provides control and measurement capabilities for Sartorius laboratory scales through the sartorius Python library.</Description>
+  <Command>
+    <Identifier>MeasureWeight</Identifier>
+    <DisplayName>Measure Weight</DisplayName>
+    <Description>Returns the current weight reading from the connected Sartorius scale.</Description>
+    <Observable>Yes</Observable>
+    <Response>
+      <Identifier>Weight</Identifier>
+      <DisplayName>Weight</DisplayName>
+      <Description>The current weight measurement from the scale.</Description>
+      <DataType>
+        <Basic>Real</Basic>
+      </DataType>
+    </Response>
+  </Command>
+  <Command>
+    <Identifier>Tare</Identifier>
+    <DisplayName>Tare Scale</DisplayName>
+    <Description>Tares the scale (sets the current weight reading to zero).</Description>
+    <Observable>No</Observable>
+    <Response>
+      <Identifier>Success</Identifier>
+      <DisplayName>Success</DisplayName>
+      <Description>Boolean indicating if the tare operation was successful.</Description>
+      <DataType>
+        <Basic>Boolean</Basic>
+      </DataType>
+    </Response>
+  </Command>
+  <Command>
+    <Identifier>Zero</Identifier>
+    <DisplayName>Zero Scale</DisplayName>
+    <Description>Zeros the scale (calibrates to absolute zero).</Description>
+    <Observable>No</Observable>
+    <Response>
+      <Identifier>Success</Identifier>
+      <DisplayName>Success</DisplayName>
+      <Description>Boolean indicating if the zero operation was successful.</Description>
+      <DataType>
+        <Basic>Boolean</Basic>
+      </DataType>
+    </Response>
+  </Command>
+  <Command>
+    <Identifier>Connect</Identifier>
+    <DisplayName>Connect to Scale</DisplayName>
+    <Description>Establishes a connection to the Sartorius scale with the specified port.</Description>
+    <Observable>No</Observable>
+    <Parameter>
+      <Identifier>Port</Identifier>
+      <DisplayName>Port</DisplayName>
+      <Description>The serial port or device address for the scale connection.</Description>
+      <DataType>
+        <Basic>String</Basic>
+      </DataType>
+    </Parameter>
+    <Response>
+      <Identifier>Connected</Identifier>
+      <DisplayName>Connected</DisplayName>
+      <Description>Boolean indicating if the connection was successful.</Description>
+      <DataType>
+        <Basic>Boolean</Basic>
+      </DataType>
+    </Response>
+  </Command>
+  <Property>
+    <Identifier>Unit</Identifier>
+    <DisplayName>Measurement Unit</DisplayName>
+    <Description>The current measurement unit of the scale (e.g., g, kg, mg).</Description>
+    <Observable>Yes</Observable>
+    <DataType>
+      <Basic>String</Basic>
+    </DataType>
+  </Property>
+  <Property>
+    <Identifier>ConnectionStatus</Identifier>
+    <DisplayName>Connection Status</DisplayName>
+    <Description>The current connection status of the Sartorius scale.</Description>
+    <Observable>Yes</Observable>
+    <DataType>
+      <Basic>Boolean</Basic>
+    </DataType>
+  </Property>
+  <Property>
+    <Identifier>StableReading</Identifier>
+    <DisplayName>Stable Reading</DisplayName>
+    <Description>Indicates whether the current weight reading is stable.</Description>
+    <Observable>Yes</Observable>
+    <DataType>
+      <Basic>Boolean</Basic>
+    </DataType>
+  </Property>
+  <Property>
+    <Identifier>ScaleInformation</Identifier>
+    <DisplayName>Scale Information</DisplayName>
+    <Description>Information about the connected Sartorius scale model, serial number, and firmware version.</Description>
+    <Observable>No</Observable>
+    <DataType>
+      <Basic>String</Basic>
+    </DataType>
+  </Property>
+</Feature>

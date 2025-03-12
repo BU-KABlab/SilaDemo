@@ -6,7 +6,9 @@ from uuid import UUID, uuid4
 from sila2.server import SilaServer
 
 from .feature_implementations.greetingprovider_impl import GreetingProviderImpl
+from .feature_implementations.sartoriusscalecontroller_impl import SartoriusScaleControllerImpl
 from .generated.greetingprovider import GreetingProviderFeature
+from .generated.sartoriusscalecontroller import SartoriusScaleControllerFeature
 
 
 class Server(SilaServer):
@@ -32,3 +34,6 @@ class Server(SilaServer):
 
         self.greetingprovider = GreetingProviderImpl(self)
         self.set_feature_implementation(GreetingProviderFeature, self.greetingprovider)
+
+        self.sartoriusscalecontroller = SartoriusScaleControllerImpl(self)
+        self.set_feature_implementation(SartoriusScaleControllerFeature, self.sartoriusscalecontroller)
