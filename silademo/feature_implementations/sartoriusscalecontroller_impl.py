@@ -39,8 +39,6 @@ class SartoriusScaleControllerImpl(SartoriusScaleControllerBase):
         # Create an event loop for running async tasks from sync context
         self.loop = asyncio.get_event_loop()
 
-        self.Connect()
-
     def get_ScaleInformation(self, *, metadata: MetadataDict) -> str:
         return self._scale_info
 
@@ -147,7 +145,7 @@ class SartoriusScaleControllerImpl(SartoriusScaleControllerBase):
         instance.begin_execution()
 
         if not self.connected or self.scale is None:
-            instance.error("Scale is not connected")
+            instance.__status = "finishedWithError"
             raise ConnectionError("Scale is not connected")
 
         try:
@@ -165,7 +163,7 @@ class SartoriusScaleControllerImpl(SartoriusScaleControllerBase):
             response = MeasureWeight_Responses(Weight=weight)
 
             # Mark as completed and return response
-            instance.complete_with(response)
+            instance.__status = "finishedSuccessfully"
             return response
 
         except Exception as e:
