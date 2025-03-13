@@ -53,9 +53,9 @@ class SartoriusScaleControllerImpl(SartoriusScaleControllerBase):
 
     def Connect(
         self,
-        Address: Optional[str],
-        IP: Optional[str],
-        Port: str,
+        Address: Optional[str] = "",
+        IP: Optional[str] = "",
+        Port: str = 49155,
         *,
         metadata: MetadataDict,
     ) -> Connect_Responses:
